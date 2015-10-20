@@ -9,6 +9,6 @@ module.exports = function(req, res) {
         id: id,
         action: 'play'
     }, function(err, response, body) {
-        res.send(200, {status: 'played'});
+        res.status(200).send({status: 'played'});
     })
 };

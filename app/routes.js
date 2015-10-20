@@ -1,11 +1,11 @@
 'use strict';
 
 var index = require('./index'),
-    favoriteGames = require('./favorites'),
+    userGames = require('./user-games'),
     playGame = require('./play-game');
 
 module.exports = function routes(app) {
 	app.get('/', index);
-    app.get('users/:id/games/favorites', favoriteGames);
+    app.get('/games/suggested', userGames.suggested);
     app.post('/games/:id/play', playGame);
 };
