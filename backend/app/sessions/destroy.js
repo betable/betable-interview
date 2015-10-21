@@ -7,6 +7,6 @@ module.exports = function destroy(req, res) {
     if (!id) {
         return res.status(400).send({error: 'Session ID required'});
     }
-    res.destroy(id);
+    store.destroyId(id);
     res.status(200).send();
 };

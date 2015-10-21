@@ -2,34 +2,47 @@
 
 var _ = require('lodash');
 
-var data = {};
+// http://stackoverflow.com/a/21963136
+var uuid = (function() {
+  var lut = new Array(256);
+  for (var i=0; i<256; i++) { lut[i] = (i<16?'0':'')+(i).toString(16); }
+  return function generate() {
+    var d0 = Math.random()*0xffffffff|0;
+    var d1 = Math.random()*0xffffffff|0;
+    var d2 = Math.random()*0xffffffff|0;
+    var d3 = Math.random()*0xffffffff|0;
+    return lut[d0&0xff]+lut[d0>>8&0xff]+lut[d0>>16&0xff]+lut[d0>>24&0xff]+'-'+
+      lut[d1&0xff]+lut[d1>>8&0xff]+'-'+lut[d1>>16&0x0f|0x40]+lut[d1>>24&0xff]+'-'+
+      lut[d2&0x3f|0x80]+lut[d2>>8&0xff]+'-'+lut[d2>>16&0xff]+lut[d2>>24&0xff]+
+      lut[d3&0xff]+lut[d3>>8&0xff]+lut[d3>>16&0xff]+lut[d3>>24&0xff];
+  };
+})();
 
-function destroy(key) {
-    var prev = data[key];
-    if (!has(key)) {
+var usernames = {};
+var ids = {};
+
+function destroyId(id) {
+    if (!_.has(ids, id)) {
         return undefined;
     }
-    data = _.omit(data, key);
+    var prev = ids[id];
+    usernames = _.omit(usernames, prev);
+    ids = _.invert(usernames);
     return prev;
 }
 
-function get(key) {
-    return data[key];
-}
-
-function has(key) {
-    return _.has(data, key);
-}
-
-function set(key, val) {
-    var prev = data[key];
-    data[key] = val;
-    return prev;
+function setOrGetId(username) {
+    if (_.has(usernames, username)) {
+        return usernames[username];
+    }
+    var id = uuid();
+    usernames = _.extend({}, usernames, _.object([[username, id]]));
+    ids = _.invert(usernames);
+    console.log(usernames, ids);
+    return id;
 }
 
 module.exports = {
-    destroy: destroy,
-    get: get,
-    has: has,
-    set: set
+    setOrGetId: setOrGetId,
+    destroyId: destroyId
 };
