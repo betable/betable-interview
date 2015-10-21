@@ -16,7 +16,6 @@
     "debug": "^2.1.3",
     "express": "^4.12.3",
     "express-bunyan-logger": "^1.1.1",
-    "express-jwt": "^3.0.0",
     "jsonwebtoken": "^5.0.0",
     "request": "^2.65.0"
   },
