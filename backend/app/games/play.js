@@ -11,8 +11,8 @@ module.exports = function play (req, res) {
 
     if (!games.index[gameId]) {
         return res.status(404).send({
-            error: 'INVALID_GAME',
-            description: 'The game for this request is missing, or is invalid'
+            error: 'GAME_NOT_FOUND',
+            description: 'The game for this request could not be located'
         });
     }
 
