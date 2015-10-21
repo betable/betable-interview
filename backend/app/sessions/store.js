@@ -21,8 +21,12 @@ var uuid = (function() {
 var usernames = {};
 var ids = {};
 
+function hasId(id) {
+    return _.has(ids, id);
+}
+
 function destroyId(id) {
-    if (!_.has(ids, id)) {
+    if (hasId(id)) {
         return undefined;
     }
     var prev = ids[id];
@@ -44,5 +48,6 @@ function setOrGetId(username) {
 
 module.exports = {
     setOrGetId: setOrGetId,
+    hasId: hasId,
     destroyId: destroyId
 };
