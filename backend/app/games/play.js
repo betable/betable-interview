@@ -2,7 +2,7 @@
 
 var request = require('request');
 
-module.exports = function(req, res) {
+module.exports = function play (req, res) {
     var id = req.params.id;
     request.post('http://localhost:3000/webhooks', {
         object: 'game',
