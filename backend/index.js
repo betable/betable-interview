@@ -24,5 +24,5 @@ app.set('port', config.PORT);
 
 // Start up and initialize the server.
 server = app.listen(app.get('port'), function serverListen() {
-	logger.info('Server started and listening on port ' + server.address().port);
+    logger.info('Server started and listening on port ' + server.address().port);
 });
