@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 
 var suggested = require('./suggested'),
