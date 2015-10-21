@@ -4,7 +4,7 @@
   "description": "A starter kit designed to spin up an express backend API quickly, including JWT.",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development PORT=3000 supervisor index.js | bunyan -o short --level info",
+    "dev": "NODE_ENV=development PORT=3000 FRONTEND_PORT=4000 supervisor index.js | bunyan -o short --level info",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Mike Mclaren <mike.mclaren@sq1.com>",

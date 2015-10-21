@@ -16,7 +16,7 @@ module.exports = function play (req, res) {
         });
     }
 
-    request.post('http://localhost:' + config.PORT + '/hook', {
+    request.post('http://localhost:' + config.FRONTEND_PORT + '/hook', {
         event: 'play',
         data: {
             game: gameId
