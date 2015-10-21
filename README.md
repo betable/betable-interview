@@ -30,6 +30,7 @@ If you make a request for a user that already has a session available it will re
 When you call this endpoint, if the session is active, it will return a list of suggested games for the user. It will look like this:
 
 ```
+200
 {
   "games": [
     GAME_OBJECT, ...
@@ -40,7 +41,6 @@ When you call this endpoint, if the session is active, it will return a list of 
 A `GAME_OBJECT` looks like this:
 
 ```
-200
 {
   "id": GAME_ID
   "name": GAME_NAME,
@@ -62,13 +62,16 @@ If the user is not signed in you will get an error
 
 The games service will make requests to your service through a "webhook". It's not truly a webhook because we will predefine the path that it will call. The request will be made to your service and will look like this:
 
-`POST /hook/play`
+`POST /hook`
 
 The body of that request will be JSON and will look like this:
 
 ```
 {
-  "game_id": GAME_ID,
+  "event": "play",
+  "data": {
+    "game":GAME_ID
+  },
   "session_id": SESSION_ID
 }
 ```
