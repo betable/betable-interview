@@ -1,9 +1,9 @@
 # betable-interview
 A starting point for the betable pair programming interview
 
-##Services Available
+## Backend
 
-You will have two services that are available to you.
+You will have two (simulated) services that are available to you. The server for these services runs on port 3000.
 
 ###Sessions Service
 
@@ -119,6 +119,10 @@ If the game is not found you will get an error:
 }
 ```
 
+## Frontend
+
+Your frontend should run on port 4000.
+
 **Web Hook**
 
 The games service will make requests to your service through a "webhook". It's not truly a webhook because we will predefine the path that it will call. The request will be made to your service and will look like this:
@@ -136,5 +140,3 @@ The body of that request will be JSON and will look like this:
   "session_id": SESSION_ID
 }
 ```
-
-
