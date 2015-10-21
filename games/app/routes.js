@@ -1,11 +1,17 @@
 'use strict';
 
-var index = require('./index'),
-    userGames = require('./user-games'),
-    playGame = require('./play-game');
+var express = require('express');
+
+var suggested = require('./suggested'),
+    play = require('./play');
+
+function games() {
+    var router = express.Router();
+    router.get('/suggested', suggested);
+    router.post('/:id/play', play);
+    return router;
+}
 
 module.exports = function routes(app) {
-	app.get('/', index);
-    app.get('/games/suggested', userGames.suggested);
-    app.post('/games/:id/play', playGame);
+    app.use('/games', games());
 };
