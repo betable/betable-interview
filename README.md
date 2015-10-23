@@ -9,7 +9,17 @@ You will have two (simulated) services that are available to you. The server for
 
 **`POST /sessions`**
 
-When you call this endpoint with a username it returns a JSON representation of a session for that user, the session will look like this:
+When you call this endpoint with a username it returns a JSON representation of a session for that user.
+
+The request body should be a JSON-encoded payload that looks like this:
+
+```
+{
+  "user_name": USER_NAME
+}
+```
+
+The session object you receive will look like this:
 
 ```
 {
