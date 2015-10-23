@@ -1,9 +1,7 @@
 'use strict';
 
-var games = require('./games'),
-    sessions = require('./sessions');
+var dummy = require('./dummy')
 
 module.exports = function routes(app) {
-    app.use('/games', games());
-    app.use('/sessions', sessions());
+    app.use('', dummy());
 };
