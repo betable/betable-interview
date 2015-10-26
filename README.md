@@ -60,7 +60,7 @@ The endpoints for this service deal in `GAME_OBJECT`s. A `GAME_OBJECT` looks lik
 }
 ```
 
-**`GET /games?session=<session_id>`**
+**`GET /games?session_id=<session_id>`**
 
 When you call this endpoint, if the session is active, it will return a list of all games.
 
@@ -74,7 +74,7 @@ If the user is not signed in you will get an error:
 }
 ```
 
-**`GET /games/suggested?session=<session_id>`**
+**`GET /games/suggested?session_id=<session_id>`**
 
 When you call this endpoint, if the session is active, it will return a list of suggested games for the user. It will look like this:
 
