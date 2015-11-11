@@ -178,6 +178,8 @@ module.exports = function routes() {
             var session = getSessionData(req)
             recentlyPlayed.unshift(game)
             session.recentlyPlayed = _.uniq(session.recentlyPlayed, 'id')
+
+            res.status(200).send({'status': 'success'})
         }
     })
     router.put('/favorites/:id', bodySession, function favorite (req, res) {
@@ -195,9 +197,11 @@ module.exports = function routes() {
         } else {
             favorites.unshift(game)
             session.favorites = _.uniq(favorites, 'id')
+            res.status(200).send({'status': 'success'})
         }
         console.log("Session:",session)
         console.log("Session Data:", sessionData)
+
     })
     router.delete('/favorites/:id', querySession, function unfavorite (req, res) {
         var gameId = req.params.id
@@ -212,7 +216,9 @@ module.exports = function routes() {
             })
         } else if (favorites) {
             _.remove(favorites, 'id', gameId)
+            res.status(200).send({'status': 'success'})
         }
+
     })
     return router
 }
