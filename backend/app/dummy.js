@@ -92,7 +92,7 @@ var _ = require('lodash')
                     description: 'The session for this request is missing, or is invalid'
                 })
             } else {
-                req.session = sessionId
+                req.session_id = sessionId
             }
             next()
         }
@@ -100,7 +100,7 @@ var _ = require('lodash')
   , querySession = sessionVerification('query.session_id')
   , bodySession = sessionVerification('body.session_id')
   , getSessionData = function (req) {
-        return sessionData[req.session]
+        return sessionData[req.session_id]
     }
 
 module.exports = function routes() {
@@ -140,7 +140,7 @@ module.exports = function routes() {
     router.get('/suggested', querySession, function suggested(req, res) {
         console.log("Suggesting Games")
         var suggestedGames = getSessionData(req).suggested
-        if (!suggestedGames || !suggestedGames.length) { 
+        if (!suggestedGames || !suggestedGames.length) {
             suggestedGames = _.sample(games, 5)
             console.log("    Creating new sample")
             getSessionData(req).suggested = suggestedGames
